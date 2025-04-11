@@ -27,8 +27,9 @@ pipeline {
                 }
             }
             steps {
-              gv.testApp()
-            }
+             script {
+                    gv.deployApp()
+                }
 
         }
         stage("deploy"){
