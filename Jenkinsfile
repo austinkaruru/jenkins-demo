@@ -25,7 +25,9 @@ pipeline {
             stage("build image") {
                 steps {
                     script {
-                        buildImage'austinmwangi/docker-jenkins:3.0'
+                        buildImage'austinmwangi/docker-jenkins:4.0'
+                        dockerLogin()
+                        dockerPush 'austinmwangi/docker-jenkins:4.0'
                         }
                     }
                 }
