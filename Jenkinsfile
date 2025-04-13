@@ -1,14 +1,14 @@
 pipeline {
     agent any 
     tools {
-        mvn 'my-maven'
+        maven 'my-maven'
     }
     stages {
             stage("build jar") {
                 steps {
                     script {
                         echo "Building the application"
-                        sh 'maven package'
+                        sh 'mvn package'
                     }
                 }
             }
