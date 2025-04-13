@@ -17,7 +17,7 @@ pipeline {
                 steps {
                     script {
                        gv.buildJar()
-                        
+            
                     }
                 }
             }

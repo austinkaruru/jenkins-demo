@@ -1,5 +1,5 @@
 def buildJar() {
-    echo 'building this app'
+    echo "building this app"
     sh 'mvn package'
 }
 
