@@ -25,7 +25,7 @@ pipeline {
             stage("build image") {
                 steps {
                     script {
-                        buildImage()
+                        buildImage'austinmwangi/docker-jenkins:3.0'
                         }
                     }
                 }
