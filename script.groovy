@@ -19,3 +19,5 @@ def testApp(){
 def deployApp(){
     echo 'deploying this application'
 }
+
+return this
