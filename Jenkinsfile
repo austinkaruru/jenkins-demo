@@ -1,5 +1,4 @@
 #!/usr/bin/env groovy
-import java.net.URLEncoder
 
 //
 // pipeline {
@@ -123,8 +122,7 @@ pipeline {
                         sh 'git status'
                         sh 'git branch'
                         sh 'git config --list'
-                        def encodedPass = URLEncoder.encode(PASS, 'UTF-8')
-                        sh "git remote set-url origin https://${USER}:${encodedPass}@github.com/austinkaruru/jenkins-demo.git"
+                        sh "git remote set-url origin https://${USER}:${PASS}@github.com/austinkaruru/jenkins-demo.git"
 
                         sh 'git add .'
                         sh 'git commit -m "jenkins ci version bump"'
