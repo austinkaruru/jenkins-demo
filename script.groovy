@@ -1,7 +1,7 @@
 
 
 def testApp(){
-    echo 'testing this application'
+    echo 'testing this application 2'
 }
 
 def deployApp(){
