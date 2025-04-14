@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 //
 // pipeline {
 //     agent none
@@ -32,7 +34,6 @@
 //     }
 // }
 
-#!/usr/bin/env groovy
 // library identifier: 'jenkins-shared-library@master', retriever: modernSCM(
 // [$class: 'GitSCMSource',
 // remote: 'https://github.com/austinkaruru/jenkins-shared-library.git',
