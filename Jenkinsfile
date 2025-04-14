@@ -21,7 +21,7 @@ pipeline {
                     }
                 }
             }
-            stage("build jar") {
+            stage("build jar too") {
                 steps {
                     script {
                         buildJar()
