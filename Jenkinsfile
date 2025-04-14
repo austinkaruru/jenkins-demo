@@ -1,4 +1,5 @@
 #!/usr/bin/env groovy
+import java.net.URLEncoder
 
 //
 // pipeline {
