@@ -1,41 +1,73 @@
+#!/usr/bin/env groovy
 
-def gv 
 pipeline {
-    agent any 
-    tools {
-        maven 'my-maven'
-    }
+    agent none
     stages {
-            stage("init"){
-                steps {
-                    script{
-                        gv = load "script.groovy"
-                    }
+        stage('build') {
+            steps {
+                script {
+                    echo "Building the application..."
                 }
             }
-            stage("build jar too") {
-                steps {
-                    script {
-                       gv.buildJar()
-            
-                    }
+        }
+        stage('test') {
+            steps {
+                script {
+                    echo "Testing the application..."
                 }
             }
-            stage("build image") {
-                steps {
-                    script {
-                      gv.buildImage()
-                        }
-                    }
-                }
-    
-            stage("deploy") {
-                steps {
-                    script {
-                        gv.deployApp()
+        }
+        stage('deploy') {
+            steps {
+                script {
+                    def dockerCmd = 'docker run -p 3080:80 -d austinmwangi/demoa-app:1.1'
+                    sshagent(['ec2-server-key']) {
+                        sh "ssh -o StrictHostKeyChecking=no Subuntu@51.21.163.72 ${dockerCmd}"
                     }
                 }
             }
         }
-    
+    }
 }
+
+// def gv 
+// pipeline {
+//     agent any 
+//     tools {
+//         maven 'my-maven'
+//     }
+//     stages {
+//             stage("init"){
+//                 steps {
+//                     script{
+//                         gv = load "script.groovy"
+//                     }
+//                 }
+//             }
+//             stage("build jar too") {
+//                 steps {
+//                     script {
+//                        gv.buildJar()
+            
+//                     }
+//                 }
+//             }
+//             stage("build image") {
+//                 steps {
+//                     script {
+//                       gv.buildImage()
+//                         }
+//                     }
+//                 }
+    
+//             stage("deploy") {
+//                 steps {
+//                     script {
+//                         gv.deployApp()
+//                     }
+//                 }
+//             }
+//         }
+    
+// }
+
