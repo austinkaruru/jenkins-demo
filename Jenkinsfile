@@ -64,7 +64,7 @@ pipeline {
 //                 }
 //             }
 //
-            stage('increment app version') {
+            stage('increment application version') {
                 steps{
                     script{
                         echo 'incrementing app version...'
