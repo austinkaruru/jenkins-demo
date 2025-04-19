@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-  docker-jenkins:
-    image: ${IMAGE}
+  java-mavena-app:
+    image: austinmwangi/docker-jenkins:${IMAGE}
     ports:
       - 8080:8080
   postgres:
