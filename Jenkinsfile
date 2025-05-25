@@ -52,7 +52,7 @@ pipeline {
 
                            sh "aws eks update-kubeconfig --region eu-north-1 --name demo-cluster --kubeconfig ${kubeconfig}"
 
-                           withEnv(["KUBECONFIG=.kube/config"]) {
+                           withEnv(["KUBECONFIG=${kubeconfig}", "NO_PROXY=.amazonaws.com"]) {
 
                            sh 'echo " --checking for proxy env vars"'
                            sh 'env | grep -i proxy || true'
