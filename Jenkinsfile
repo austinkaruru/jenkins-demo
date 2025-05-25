@@ -29,13 +29,13 @@ pipeline {
                    echo 'deploying docker image...'
 
                    sh '''
-                       # Install AWS CLI locally if not present
+                       # Install/Update AWS CLI and add to PATH
                        if ! command -v aws &> /dev/null; then
                            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
                            unzip -o awscliv2.zip
-                           ./aws/install -i ~/aws-cli -b ~/bin
-                           export PATH=~/bin:$PATH
+                           ./aws/install -i ~/aws-cli -b ~/bin --update
                        fi
+                       export PATH=~/bin:$PATH
 
                        aws eks update-kubeconfig --region eu-north-1 --name demo-ckuster
                        kubectl create deployment nginx-deployment --image=nginx
