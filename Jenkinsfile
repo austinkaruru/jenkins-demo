@@ -5,6 +5,10 @@ pipeline {
     tools {
         maven 'my-maven'
     }
+    environment{
+        DOCKER_REPO_SERVER = '195275634348.dkr.ecr.eu-north-1.amazonaws.com'
+        DOCKER_REPO = '195275634348.dkr.ecr.eu-north-1.amazonaws.com/java-maven-app'
+    }
     stages {
         stage('increment version') {
             steps {
@@ -31,10 +35,10 @@ pipeline {
             steps {
                 script {
                     echo "building the docker image..."
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        sh "docker build -t austinmwangi/docker-jenkins:${IMAGE_NAME} ."
-                        sh "echo $PASS | docker login -u $USER --password-stdin"
-                        sh "docker push austinmwangi/docker-jenkins:${IMAGE_NAME}"
+                    withCredentials([usernamePassword(credentialsId: 'aws-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                        sh "docker build -t ${DOCKER_REPO}:${IMAGE_NAME} ."
+                        sh "echo $PASS | docker login -u $USER --password-stdin ${DOCKER_REPO_SERVER}"
+                        sh "docker push ${DOCKER_REPO}:${IMAGE_NAME}"
                     }
                 }
             }
