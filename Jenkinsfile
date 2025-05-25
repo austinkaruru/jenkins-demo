@@ -21,25 +21,11 @@ pipeline {
             environment {
                AWS_ACCESS_KEY_ID = credentials('jenkins_aws_access_key_id')
                AWS_SECRET_ACCESS_KEY = credentials('jenkins_aws_secret_access_key')
-               AWS_DEFAULT_REGION = 'eu-north-1'  // Set your region
-               AWS_CLI_AUTO_PROMPT = 'off'        // Disable interactive prompts
             }
             steps {
                 script {
                    echo 'deploying docker image...'
-
-                   sh '''
-                       # Install/Update AWS CLI and add to PATH
-                       if ! command -v aws &> /dev/null; then
-                           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-                           unzip -o awscliv2.zip
-                           ./aws/install -i ~/aws-cli -b ~/bin --update
-                       fi
-                       export PATH=~/bin:$PATH
-
-                       aws eks update-kubeconfig --region eu-north-1 --name demo-ckuster
-                       kubectl create deployment nginx-deployment --image=nginx
-                   '''
+                   sh 'kubectl create deployment nginx-deployment --image=nginx'
                 }
             }
         }
