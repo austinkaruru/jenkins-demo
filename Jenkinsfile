@@ -32,7 +32,7 @@ pipeline {
                        # Install AWS CLI locally if not present
                        if ! command -v aws &> /dev/null; then
                            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-                           unzip awscliv2.zip
+                           unzip -o awscliv2.zip
                            ./aws/install -i ~/aws-cli -b ~/bin
                            export PATH=~/bin:$PATH
                        fi
