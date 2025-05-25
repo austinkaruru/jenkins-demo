@@ -25,6 +25,9 @@ pipeline {
             steps {
                 script {
                    echo 'deploying docker image...'
+
+                   sh 'chown jenkins:jenkins /var/jenkins_home/.kube'
+
                    sh 'aws eks --region eu-north-1 update-kubeconfig --name demo-ckuster'
                    sh 'kubectl create deployment nginx-deployment --image=nginx'
                 }
