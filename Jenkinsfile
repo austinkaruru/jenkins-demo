@@ -51,7 +51,7 @@ pipeline {
                            echo 'deploying docker image...'
 
                            sh "aws eks update-kubeconfig --region eu-north-1 --name demo-cluster --kubeconfig ${kubeconfig}"
-                           def
+
                            withEnv(["KUBECONFIG=.kube/config"]) {
                            sh 'export IMAGE_NAME && envsubst < kubernetes/deployment.yaml | kubectl apply -f -'
                            sh 'envsubst < kubernetes/service.yaml | kubectl apply -f -'
