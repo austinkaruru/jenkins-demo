@@ -28,7 +28,6 @@ pipeline {
                 script {
                    echo 'deploying docker image...'
                    sh '''
-                       aws eks update-kubeconfig --region eu-north-1 --name demo-ckuster
                        kubectl create deployment nginx-deployment --image=nginx
                    '''
                 }
