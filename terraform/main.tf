@@ -1,4 +1,10 @@
 terraform {
+  required_version = ">= 0.12"
+  backend "s3" {
+    bucket = "karuru-myapp-bucket"
+    key = myapp/state.tfstate
+    region = "eu-north-1"
+  }
     required_providers {
         aws = {
             source = "hashicorp/aws"
